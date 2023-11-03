@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/styles.css">
+    <meta charset="UTF-8">
+    <title>Publishers</title>
+</head>
+<body>
+
+<h1>Publishers</h1>
+<table style="border:1px solid black">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>City</td>
+        <td>State</td>
+        <td>Zip</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="publisher: ${publishers}">
+        <td th:text="${publisher.id}"></td>
+        <td th:text="${publisher.name}"></td>
+        <td th:text="${publisher.address}"></td>
+        <td th:text="${publisher.city}"></td>
+        <td th:text="${publisher.state}"></td>
+        <td th:text="${publisher.zip}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/styles.css">
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<h1>Create new Book</h1>
+
+<div style="width:200px; display:block; margin:auto; margin-top:100px; padding:20px; border:1px solid black">
+
+    <form th:method="${book.getId()} == null ? POST: PUT"
+          th:action="${book.getId()} == null ? @{/books/new} : @{/books/update}" th:object="${book}">
+        <input name="id" th:field="*{id}" hidden="hidden" type="number" id="id"/>
+
+        <label for="title"> Title </label>
+        <input name="title" th:field="*{title}" type="text" id="title"/>
+
+        <br>
+        <label for="isbn">ISBN</label>
+        <input name="isbn" th:field="*{isbn}" type="text" id="isbn">
+
+        <br>
+        <label for="publisher">Publisher</label>
+        <select name="publisher" id="publisher" th:field="*{publisher}">
+            <option th:each="publisher: ${publishers}" th:value="${publisher.id}" th:text="${publisher.name}"></option>
+        </select>
+
+        <br>
+        <label for="authors">Authors</label>
+        <select name="authors" id="authors" th:field="*{authors}">
+            <option th:each="author: ${authors}" th:value="${author.id}" th:text="${author.firstName}"></option>
+        </select>
+
+        <br>
+        <input type="submit" th:value="${book.getId()} == null ? 'Add Book': 'Update Book'">
+    </form>
+</div>
+
+</body>
+</html>

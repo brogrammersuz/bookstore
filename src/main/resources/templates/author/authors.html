@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/styles.css">
+    <meta charset="UTF-8">
+    <title>Authors</title>
+</head>
+<body>
+<h1>Authors</h1>
+<table style="border:1px solid black">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>FirstName</td>
+        <td>LastName</td>
+        <td>Books</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="author: ${authors}">
+        <td th:text="${author.id}"></td>
+        <td th:text="${author.firstName}"></td>
+        <td th:text="${author.lastName}"></td>
+        <td th:each="book : ${author.books}">
+            <p th:text="${book.title}"></p>
+        </td>
+        <td>
+            <a th:href="@{/authors/update/{id}(id=${author.getId()})}">Update</a>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/authors/delete/{id}(id=${author.getId()})}">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

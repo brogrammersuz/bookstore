@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/styles.css">
+    <meta charset="UTF-8">
+    <title>Authors</title>
+</head>
+<body>
+<h1>Create new Author</h1>
+
+<div style="width:200px; display:block; margin:auto; margin-top:100px; padding:20px; border:1px solid black">
+
+    <form th:method="${author.getId()} == null ? POST: PUT"
+          th:action="${author.getId()} == null ? @{/authors/new} : @{/authors/update}" th:object="${author}">
+        <input name="id" th:field="*{id}" hidden="hidden" type="number" id="id"/>
+
+        <label for="firstName"> First Name</label>
+        <input name="firstName" th:field="*{firstName}" type="text" id="firstName"/>
+
+        <br>
+        <label for="lastName">Last Name</label>
+        <input name="lastName" th:field="*{lastName}" type="text" id="lastName">
+
+        <br>
+        <input type="submit" th:value="${author.getId()} == null ? 'Add Author': 'Update Author'">
+    </form>
+</div>
+
+</body>
+</html>
