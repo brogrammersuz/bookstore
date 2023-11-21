@@ -5,14 +5,19 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Table(name = "book")
 @Entity
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, updatable = false)
     private Long id;
+    @Column(name = "title", nullable = false)
     private String title;
+    @Column(name = "isbn", nullable = false)
     private String isbn;
+
     @ManyToOne
     private Publisher publisher;
     @ManyToMany

@@ -5,16 +5,20 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Table(name = "author")
 @Entity
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, updatable = false)
     private Long id;
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+    @Column(name = "last_name", nullable = false)
     private String lastName;
     @ManyToMany(mappedBy = "authors") //cascade = CascadeType.ALL
-    private Set<Book> books  = new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
     public Author() {
     }
